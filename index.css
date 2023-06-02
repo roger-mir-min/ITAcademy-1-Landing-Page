@@ -1,0 +1,381 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    font-family: "Helvetica", "Arial", "Verdana";
+}
+
+body {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas:
+        "header header"
+        "main aside"
+        "footer footer";
+    grid-gap: 0.5em;
+    text-align: center;
+}
+
+.header {
+    grid-area: header;
+    position: relative;
+    padding-top: 0.1em;
+    height: 20em; /* Per mantenir una proporció similar a la del model*/
+    background-image: url("images/header_alt.png");
+    background-size: cover;
+    background-position: bottom center;
+}
+
+.header:hover {
+    filter: brightness(80%);
+    transition: filter 1s ease;
+}
+
+.header__sup {
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-areas:
+        "wrapper__logo nav social";
+    color: grey;
+}
+
+.wrapper__logo { /*Deixo flex*/
+    grid-area: wrapper__logo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    transition: transform 2s ease; /* Per desfer l'efecte del :hover*/
+}
+
+.logo:hover {
+    transform: scale(1.3, 1.3);
+    transition: transform 2s;
+}
+
+.nav{
+    grid-area: nav;
+}
+
+.nav__ul { /*No sé si es podria obviar aquesta etiqueta*/
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 0px;
+}
+
+.nav__ul--li {
+    padding: 0.25em;
+    list-style: none;
+    transition: animation 2s ease;
+}
+
+.nav__ul--li:hover {
+    animation-name: botons; /*Com que és una animation amb key frames no sé "desfer" l'efecte en mantenir o treure el :hover*/
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards; /*Era perquè es mantingués l'efecte durant el hover, però no funciona*/
+    border: 1px solid grey;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.li__i {
+    height: 1em;
+}
+
+.social { /*Deixo flex*/
+    grid-area: social;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.social__a{
+    margin-bottom: 0.5em;
+}
+
+.social__i {
+    margin: 0.25em 0;
+    padding: 0 0.5em;
+}
+
+.social__i:hover {
+    color: black;
+    transition: 1s;
+}
+
+.header__footer {
+    position: absolute;
+    bottom: 0px;
+    left: calc(50% - 45vw);
+    display: flex;
+    margin: 0px;
+    width: 90vw;
+    height: 2.75em;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9;
+    opacity: 0.8;
+    color: orange;
+    font-size: 2em;
+    font-family: "Times New Roman", "Helvetica", "Arial";
+    font-weight: normal;
+    text-align: center;
+}
+
+.header__footer:hover {
+    animation-name: titol;
+    animation-duration: 0.82s;
+    animation-timing-function: cubic-bezier(.36, .07, .19, .97);
+    animation-fill-mode: forwards;
+}
+
+.main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 0fr 1fr 1fr 0fr;
+    grid-template-areas:
+        ". . . ."
+        ". one two . "
+        ". three four ."
+        ". main__footer main__footer ."
+        ". . . .";
+    grid-gap: 0.5em;
+    background-color: #d9d9d9;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three {
+    grid-area: three;
+}
+
+.four {
+    grid-area: four;
+}
+
+.main__card {
+    padding: 0.5em;
+    background-color: rgb(240, 240, 240);
+}
+
+.main__card:hover {
+    border: 1px solid black;
+}
+
+.main__card:hover .card__text {
+    color: red;
+    transition: color 2s ease;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.card__foto {
+    width: 100%;
+    object-fit: cover;
+    height: 15em; /*Per igualar les fotos, he agafat una mitjana*/
+}
+
+.date {
+    position: absolute;
+    bottom: 0.25em;
+    left: 0.25em;
+    color: yellow;
+}
+
+.card__titol {
+    margin-top: 0.25em;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    padding-left: 0.2em;
+    background-color: red;
+    color: rgb(240, 240, 240);
+    text-align: left;
+}
+
+.card__text {
+    column-count: 2;
+    column-gap: 1em;
+    text-align: left;
+    transition: 2s;
+}
+
+.readmore {
+    margin: 0em;
+    text-align: left;
+    color: grey;
+}
+
+.main__footer {
+    grid-area: main__footer;
+    background-color: #d9d9d9;
+}
+
+.aside {
+    grid-area: aside;
+    background-color: #d9d9d9;
+}
+
+.aside__titol {
+    margin: 1.5em 0.5em 1.5em 0.5em;
+    font-weight: bold;
+}
+
+.aside__text {
+    margin: 0.15em 0.5em 0.5em 0.5em;
+}
+
+.footer { /*Mantinc flex*/
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+}
+
+.footer__item {
+    margin: 0 0.5em;
+    padding: 0.5em;
+    flex: 1 0 auto;
+    background-color: #d9d9d9;
+    color: grey;
+    font-family: "Helvetica";
+    font-size: 0.75em;
+}
+
+@media screen and (max-width: 960px) {
+
+body{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "main"
+        "aside"
+        "footer";
+    }
+
+    .logo:hover {
+        transform: scale(1.1, 1.1); /*Redueixo l'abast de l'efecte perquè no surti del contenidor*/
+        transition: transform 2s;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .li__i{
+        display: block;
+    }
+    .header__footer {
+        bottom: 3.8em;
+        height: 397;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .header {
+        background-image: url("images/header3.png"); /*Poso una imatge més alta que s'adapta a les noves dimensions*/
+    }
+
+    .header__sup {
+        display: grid;
+        grid-template-rows: repeat(3, auto);
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "wrapper__logo"
+            "nav"
+            "social";
+    }
+
+    .social { /* Deixo flex */
+        justify-content: center;
+    }
+
+    .header__footer {
+        bottom: 4em;
+        height: 2.2em;
+        font-size: 1.5em;
+    }
+
+    .main{
+        grid-template-columns: 0fr 1fr 0fr;
+        grid-template-areas:
+            ". . ."
+            ". one ."
+            ". two ."
+            ". three ."
+            ". four ."
+            ". main__footer .";
+    }
+}
+
+@keyframes botons {
+    0% {
+        color: #d9d9d9;
+    }
+
+    50% {
+        color: black;
+    }
+
+    100% {
+        color: #d9d9d9;
+    }
+}
+
+@keyframes titol {
+
+    50% {
+        box-shadow: 0px 0px 5px 5px orange;
+    }
+
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes wrapper__logo {
+    0% {
+        height: 70px;
+    }
+
+    100% {
+        height: 100px;
+    }
+}
+
+@keyframes logo_unhover {
+    100% {
+        height: 70px;
+    }
+}
